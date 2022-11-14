@@ -58,11 +58,11 @@ const App = () => {
       ingredients: [{ id: uuidv4(), name: 'Name', amount: '1 Tbs' }],
     }
 
-    const handleRecipeDel = (id: string) => {
-      setRecipes(recipes.filter(recipe => recipe.id !== id))
-    }
-
     setRecipes([...recipes, newRecipe])
+  }
+
+  const handleRecipeDel = (id: string) => {
+    setRecipes(recipes.filter(recipe => recipe.id !== id))
   }
 
   return (

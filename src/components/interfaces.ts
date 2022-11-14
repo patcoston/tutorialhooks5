@@ -30,5 +30,5 @@ export interface Recipe {
 export interface recipeListProps {
   recipes: Recipe[]
   handleRecipeAdd(): void
-  handleRecipeDel(): void
+  handleRecipeDel(id: string): void
 }
