@@ -15,7 +15,6 @@ export interface recipeProps {
   servings: number
   instructions: string
   ingredients: IngredientProps[]
-  handleRecipeDel(id: string): void
 }
 
 export interface Recipe {
@@ -29,6 +28,4 @@ export interface Recipe {
 
 export interface recipeListProps {
   recipes: Recipe[]
-  handleRecipeAdd(): void
-  handleRecipeDel(id: string): void
 }

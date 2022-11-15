@@ -1,18 +1,12 @@
 import React, { FC } from 'react'
+import { useStore } from '../store/StoreProvider'
 import { recipeProps } from './interfaces'
 //import { IngredientListProps } from './IngredientList'
 import IngredientList from './IngredientList'
 
 const Recipe: FC<recipeProps> = props => {
-  const {
-    id,
-    name,
-    cookTime,
-    servings,
-    instructions,
-    ingredients,
-    handleRecipeDel,
-  } = props
+  const { id, name, cookTime, servings, instructions, ingredients } = props
+  const { handleRecipeDel } = useStore()
   return (
     <div className="recipe">
       <header className="recipe__header">
