@@ -67,7 +67,10 @@ export const handleRecipeDel = (id: string) => {
 
 const App = () => {
   return (
-    <StoreProvider>
+    <StoreProvider
+      handleRecipeAdd={handleRecipeAdd}
+      handleRecipeDel={handleRecipeDel}
+    >
       <RecipeList recipes={recipes} />
     </StoreProvider>
   )
