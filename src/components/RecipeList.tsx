@@ -1,7 +1,6 @@
 import React, { FC, createContext, useContext } from 'react'
 import { Store } from '../store/StoreProvider'
 import Recipe from './Recipe'
-//import { recipeType } from './types'
 import { recipeListProps } from './interfaces'
 
 const RecipeList: FC<recipeListProps> = ({ recipes }) => {
