@@ -1,9 +1,15 @@
-import { useState, useContext } from 'react'
-import StoreProvider from '../store/StoreProvider'
+import { useState, createContext, useContext } from 'react'
 import RecipeList from './RecipeList'
 import { sampleRecipes } from '../data/SampleRecipes'
 import { v4 as uuidv4 } from 'uuid'
 import '../css/App.css'
+
+export interface Store {
+  handleRecipeAdd(): void
+  handleRecipeDel(id: string): void
+}
+
+export const RecipeContext = createContext({} as Store)
 
 const App = () => {
   const [recipes, setRecipes] = useState(sampleRecipes)
@@ -25,13 +31,15 @@ const App = () => {
     setRecipes(recipes.filter(recipe => recipe.id !== id))
   }
 
+  const recipeContextValue = {
+    handleRecipeAdd,
+    handleRecipeDel,
+  }
+
   return (
-    <StoreProvider
-      handleRecipeAdd={handleRecipeAdd}
-      handleRecipeDel={handleRecipeDel}
-    >
+    <RecipeContext.Provider value={recipeContextValue}>
       <RecipeList recipes={recipes} />
-    </StoreProvider>
+    </RecipeContext.Provider>
   )
 }
 

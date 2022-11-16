@@ -1,11 +1,10 @@
-import React, { FC, createContext, useContext } from 'react'
-import { Store } from '../store/StoreProvider'
+import React, { FC, useContext } from 'react'
+import { Store, RecipeContext } from './App'
 import Recipe from './Recipe'
 import { recipeListProps } from './interfaces'
 
 const RecipeList: FC<recipeListProps> = ({ recipes }) => {
-  const StoreContext = createContext({} as Store)
-  const useStore = () => useContext<Store>(StoreContext)
+  const useStore = () => useContext<Store>(RecipeContext)
   const { handleRecipeAdd } = useStore()
   return (
     <div className="recipe-list">
