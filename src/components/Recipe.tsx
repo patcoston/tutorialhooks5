@@ -1,4 +1,4 @@
-import React, { FC, useContext } from 'react'
+import React, { FC, useContext, useEffect } from 'react'
 import { Store, RecipeContext } from './App'
 import { recipeProps } from './interfaces'
 import IngredientList from './IngredientList'
@@ -7,6 +7,12 @@ const Recipe: FC<recipeProps> = props => {
   const { id, name, cookTime, servings, instructions, ingredients } = props
   const useStore = () => useContext<Store>(RecipeContext)
   const { handleRecipeDel } = useStore()
+  useEffect(() => {
+    console.log('Render Recipe')
+    return () => {
+      console.log('Unmount Recipe')
+    }
+  }, [])
   return (
     <div className="recipe">
       <header className="recipe__header">

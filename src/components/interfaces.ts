@@ -17,15 +17,6 @@ export interface recipeProps {
   ingredients: IngredientProps[]
 }
 
-export interface Recipe {
-  id: string
-  name: string
-  cookTime: string
-  servings: number
-  instructions: string
-  ingredients: IngredientProps[]
-}
-
 export interface recipeListProps {
-  recipes: Recipe[]
+  recipes: recipeProps[]
 }
