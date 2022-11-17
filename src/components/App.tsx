@@ -4,6 +4,7 @@ import { sampleRecipes } from '../data/SampleRecipes'
 import { recipeProps, recipeListProps } from './interfaces'
 import { v4 as uuidv4 } from 'uuid'
 import '../css/App.css'
+import RecipeEdit from './RecipeEdit'
 
 export interface Store {
   handleRecipeAdd(): void
@@ -61,6 +62,7 @@ const App = () => {
   return (
     <RecipeContext.Provider value={recipeContextValue}>
       <RecipeList recipes={recipes} />
+      <RecipeEdit />
     </RecipeContext.Provider>
   )
 }
