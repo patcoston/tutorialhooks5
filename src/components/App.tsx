@@ -6,15 +6,17 @@ import { v4 as uuidv4 } from 'uuid'
 import '../css/App.css'
 import RecipeEdit from './RecipeEdit'
 
-export interface Store {
+export interface RecipeContextValue {
   handleRecipeAdd(): void
   handleRecipeDel(id: string): void
+  handleRecipeSelect(id: string): void
 }
 
-export const RecipeContext = createContext({} as Store)
+export const RecipeContext = createContext({} as RecipeContextValue)
 const LOCAL_STORAGE_KEY = 'cookingWithReact.recipes'
 
 const App = () => {
+  const [selectedRecipeId, setSelectedRecipeId] = useState('')
   const [recipes, setRecipes] = useState(() => {
     const recipeJSON = localStorage.getItem(LOCAL_STORAGE_KEY)
     if (recipeJSON) {
@@ -23,16 +25,22 @@ const App = () => {
       return sampleRecipes
     }
   })
+  const selectedRecipe: recipeProps = recipes.find(
+    (recipe: recipeProps) => recipe.id === selectedRecipeId,
+  )
 
   useEffect(() => {
     const recipeJSON = localStorage.getItem(LOCAL_STORAGE_KEY)
-    console.log(recipeJSON)
     if (recipeJSON != null) setRecipes(JSON.parse(recipeJSON))
   }, [])
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes))
   }, [recipes])
+
+  const handleRecipeSelect = (id: string) => {
+    setSelectedRecipeId(id)
+  }
 
   const handleRecipeAdd = () => {
     const newRecipe = {
@@ -57,12 +65,13 @@ const App = () => {
   const recipeContextValue = {
     handleRecipeAdd,
     handleRecipeDel,
+    handleRecipeSelect,
   }
 
   return (
     <RecipeContext.Provider value={recipeContextValue}>
       <RecipeList recipes={recipes} />
-      <RecipeEdit />
+      {selectedRecipe && <RecipeEdit recipe={selectedRecipe} />}
     </RecipeContext.Provider>
   )
 }

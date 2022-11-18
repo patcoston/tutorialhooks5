@@ -1,12 +1,12 @@
-import React, { FC, useContext, useEffect } from 'react'
-import { Store, RecipeContext } from './App'
+import { FC, useContext, useEffect } from 'react'
+import { RecipeContextValue, RecipeContext } from './App'
 import { recipeProps } from './interfaces'
 import IngredientList from './IngredientList'
 
 const Recipe: FC<recipeProps> = props => {
   const { id, name, cookTime, servings, instructions, ingredients } = props
-  const useStore = () => useContext<Store>(RecipeContext)
-  const { handleRecipeDel } = useStore()
+  const useStore = () => useContext<RecipeContextValue>(RecipeContext)
+  const { handleRecipeDel, handleRecipeSelect } = useStore()
   useEffect(() => {
     console.log('Render Recipe')
     return () => {
@@ -18,7 +18,12 @@ const Recipe: FC<recipeProps> = props => {
       <header className="recipe__header">
         <h3 className="recipe__title">{name}</h3>
         <div>
-          <button className="btn btn--primary mr-1">Edit</button>
+          <button
+            className="btn btn--primary mr-1"
+            onClick={() => handleRecipeSelect(id)}
+          >
+            Edit
+          </button>
           <button
             className="btn btn--danger"
             onClick={() => handleRecipeDel(id)}

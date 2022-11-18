@@ -1,7 +1,13 @@
-import React from 'react'
+import { FC } from 'react'
 import RecipeIngredientEdit from './RecipeIngredientEdit'
+import { recipeProps } from './interfaces'
 
-export default function RecipeEdit() {
+const RecipeEdit: FC<recipeProps> = ({
+  name,
+  cookTime,
+  servings,
+  instructions,
+}) => {
   return (
     <div className="recipe-edit">
       <div className="recipe-edit__remove-button-container">
@@ -15,6 +21,7 @@ export default function RecipeEdit() {
           type="text"
           name="name"
           id="name"
+          value={name}
           className="recipe-edit__input"
         />
         <label htmlFor="cookTime" className="recipe-edit__label">
@@ -22,18 +29,20 @@ export default function RecipeEdit() {
         </label>
         <input
           type="text"
-          name="name"
+          name="cookTime"
           id="cookTime"
+          value={cookTime}
           className="recipe-edit__input"
         />
         <label htmlFor="serving" className="recipe-edit__label">
-          Name
+          Serving
         </label>
         <input
           type="number"
-          name="name"
+          name="serving"
           id="serving"
           min="1"
+          value={servings}
           className="recipe-edit__input"
         />
         <label htmlFor="instruction" className="recipe-edit__label">
@@ -43,7 +52,9 @@ export default function RecipeEdit() {
           name="instructions"
           id="instructions"
           className="recipe-edit__input"
-        ></textarea>
+        >
+          {instructions}
+        </textarea>
       </div>
       <br />
       <label className="recipe-edit__label">Ingredients</label>
@@ -60,3 +71,5 @@ export default function RecipeEdit() {
     </div>
   )
 }
+
+export default RecipeEdit

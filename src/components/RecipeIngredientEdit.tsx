@@ -1,6 +1,6 @@
-import React from 'react'
+import { FC } from 'react'
 
-export default function RecipeIngredientEdit() {
+const RecipeIngredientEdit: FC = () => {
   return (
     <>
       <input className="recipe-edit__input" type="text" />
@@ -9,3 +9,5 @@ export default function RecipeIngredientEdit() {
     </>
   )
 }
+
+export default RecipeIngredientEdit
