@@ -1,13 +1,10 @@
 import { FC } from 'react'
 import RecipeIngredientEdit from './RecipeIngredientEdit'
-import { recipeProps } from './interfaces'
+import { recipeObjProp } from './interfaces'
+import IngredientList from './IngredientList'
 
-const RecipeEdit: FC<recipeProps> = ({
-  name,
-  cookTime,
-  servings,
-  instructions,
-}) => {
+const RecipeEdit: FC<recipeObjProp> = ({ recipe }) => {
+  const { name, cookTime, servings, instructions, ingredients } = recipe
   return (
     <div className="recipe-edit">
       <div className="recipe-edit__remove-button-container">
@@ -62,8 +59,11 @@ const RecipeEdit: FC<recipeProps> = ({
         <div>Name</div>
         <div>Amount</div>
         <div></div>
-        <RecipeIngredientEdit />
-        <RecipeIngredientEdit />
+        {ingredients.map(ingredient => {
+          return (
+            <RecipeIngredientEdit key={ingredient.id} ingredient={ingredient} />
+          )
+        })}
       </div>
       <div className="recipe-edit__add-ingredient-btn-container">
         <button className="btn btn--primary">Add Ingredient</button>

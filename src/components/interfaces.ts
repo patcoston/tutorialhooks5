@@ -4,6 +4,10 @@ export interface IngredientProps {
   amount: string
 }
 
+export interface IngredientObjProps {
+  ingredient: IngredientProps
+}
+
 export interface IngredientListProps {
   ingredients: IngredientProps[]
 }
@@ -15,6 +19,10 @@ export interface recipeProps {
   servings: number
   instructions: string
   ingredients: IngredientProps[]
+}
+
+export interface recipeObjProp {
+  recipe: recipeProps
 }
 
 export interface recipeListProps {

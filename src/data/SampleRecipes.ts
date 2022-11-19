@@ -5,7 +5,7 @@ export const sampleRecipes = [
     cookTime: '1:45',
     servings: 3,
     instructions:
-      '1. Put salt on chicken 2.\nPut chicken in oven 3.\nEat chicken\n',
+      '1. Put salt on chicken\n2. Put chicken in oven\n3. Eat chicken\n',
     ingredients: [
       {
         id: '1',
@@ -24,7 +24,7 @@ export const sampleRecipes = [
     name: 'Plain Pork',
     cookTime: '2:30',
     servings: 5,
-    instructions: '1. Put paprika on pork 2.\nPut pork in oven 3.\nEat pork\n',
+    instructions: '1. Put paprika on pork\n2. Put pork in oven\n3. Eat pork\n',
     ingredients: [
       {
         id: '1',
