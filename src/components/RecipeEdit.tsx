@@ -72,9 +72,8 @@ const RecipeEdit: FC<recipeObjProp> = ({ recipe }) => {
           onInput={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             handleChange({ instructions: e.target.value })
           }
-        >
-          {instructions}
-        </textarea>
+          value={instructions}
+        />
       </div>
       <br />
       <label className="recipe-edit__label">Ingredients</label>
