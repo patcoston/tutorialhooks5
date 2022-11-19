@@ -1,10 +1,21 @@
-import { FC } from 'react'
+import { FC, FormEventHandler, useContext } from 'react'
 import RecipeIngredientEdit from './RecipeIngredientEdit'
+import { RecipeContextValue, RecipeContext } from './App'
 import { recipeObjProp } from './interfaces'
-import IngredientList from './IngredientList'
 
 const RecipeEdit: FC<recipeObjProp> = ({ recipe }) => {
-  const { name, cookTime, servings, instructions, ingredients } = recipe
+  const { id, name, cookTime, servings, instructions, ingredients } = recipe
+  const useStore = () => useContext<RecipeContextValue>(RecipeContext)
+  const { handleRecipeEdit } = useStore()
+  type changeType = {
+    name?: string
+    cookTime?: string
+    servings?: number
+    instructions?: string
+  }
+  const handleChange = (changes: changeType) => {
+    handleRecipeEdit({ ...recipe, ...changes })
+  }
   return (
     <div className="recipe-edit">
       <div className="recipe-edit__remove-button-container">
@@ -20,6 +31,9 @@ const RecipeEdit: FC<recipeObjProp> = ({ recipe }) => {
           id="name"
           value={name}
           className="recipe-edit__input"
+          onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+            handleChange({ name: e.target.value })
+          }
         />
         <label htmlFor="cookTime" className="recipe-edit__label">
           Cook Time
@@ -30,6 +44,9 @@ const RecipeEdit: FC<recipeObjProp> = ({ recipe }) => {
           id="cookTime"
           value={cookTime}
           className="recipe-edit__input"
+          onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+            handleChange({ cookTime: e.target.value })
+          }
         />
         <label htmlFor="serving" className="recipe-edit__label">
           Serving
@@ -41,6 +58,9 @@ const RecipeEdit: FC<recipeObjProp> = ({ recipe }) => {
           min="1"
           value={servings}
           className="recipe-edit__input"
+          onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+            handleChange({ servings: parseInt(e.target.value) || 0 })
+          }
         />
         <label htmlFor="instruction" className="recipe-edit__label">
           Instructions
@@ -49,6 +69,9 @@ const RecipeEdit: FC<recipeObjProp> = ({ recipe }) => {
           name="instructions"
           id="instructions"
           className="recipe-edit__input"
+          onInput={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+            handleChange({ instructions: e.target.value })
+          }
         >
           {instructions}
         </textarea>

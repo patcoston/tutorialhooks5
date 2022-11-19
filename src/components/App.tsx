@@ -1,4 +1,4 @@
-import { useState, createContext, useEffect } from 'react'
+import { useState, createContext, useEffect, ChangeEventHandler } from 'react'
 import RecipeList from './RecipeList'
 import { sampleRecipes } from '../data/SampleRecipes'
 import { recipeProps, recipeListProps } from './interfaces'
@@ -10,6 +10,7 @@ export interface RecipeContextValue {
   handleRecipeAdd(): void
   handleRecipeDel(id: string): void
   handleRecipeSelect(id: string): void
+  handleRecipeEdit(recipe: recipeProps): void
 }
 
 export const RecipeContext = createContext({} as RecipeContextValue)
@@ -55,6 +56,13 @@ const App = () => {
     setRecipes([...recipes, newRecipe])
   }
 
+  const handleRecipeEdit = (recipe: recipeProps) => {
+    const newRecipes = [...recipes]
+    const index = newRecipes.findIndex(r => r.id === recipe.id)
+    newRecipes[index] = recipe
+    setRecipes(newRecipes)
+  }
+
   const handleRecipeDel = (id: string) => {
     const newRecipeList: recipeListProps = recipes.filter(
       (recipe: recipeProps) => recipe.id !== id,
@@ -66,6 +74,7 @@ const App = () => {
     handleRecipeAdd,
     handleRecipeDel,
     handleRecipeSelect,
+    handleRecipeEdit,
   }
 
   return (
