@@ -12,7 +12,7 @@ const RecipeIngredientEdit: FC<IngredientObjProps> = ({
         className="recipe-edit__input"
         type="text"
         value={name}
-        onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           handleIngredientChange({
             id,
             name: e.target.value,
@@ -24,7 +24,7 @@ const RecipeIngredientEdit: FC<IngredientObjProps> = ({
         className="recipe-edit__input"
         type="text"
         value={amount}
-        onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           handleIngredientChange({
             id,
             name,

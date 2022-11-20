@@ -39,7 +39,7 @@ const RecipeEdit: FC<recipeObjProp> = ({ recipe }) => {
           id="name"
           value={name}
           className="recipe-edit__input"
-          onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             handleChange({ name: e.target.value })
           }
         />
@@ -52,7 +52,7 @@ const RecipeEdit: FC<recipeObjProp> = ({ recipe }) => {
           id="cookTime"
           value={cookTime}
           className="recipe-edit__input"
-          onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             handleChange({ cookTime: e.target.value })
           }
         />
@@ -66,7 +66,7 @@ const RecipeEdit: FC<recipeObjProp> = ({ recipe }) => {
           min="1"
           value={servings}
           className="recipe-edit__input"
-          onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             handleChange({ servings: parseInt(e.target.value) || 0 })
           }
         />
@@ -77,7 +77,7 @@ const RecipeEdit: FC<recipeObjProp> = ({ recipe }) => {
           name="instructions"
           id="instructions"
           className="recipe-edit__input"
-          onInput={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             handleChange({ instructions: e.target.value })
           }
           value={instructions}
