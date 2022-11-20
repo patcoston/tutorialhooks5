@@ -2,6 +2,7 @@ import { FC, FormEventHandler, useContext } from 'react'
 import RecipeIngredientEdit from './RecipeIngredientEdit'
 import { RecipeContextValue, RecipeContext } from './App'
 import { recipeObjProp } from './interfaces'
+import { IngredientProps } from './interfaces'
 
 const RecipeEdit: FC<recipeObjProp> = ({ recipe }) => {
   const { id, name, cookTime, servings, instructions, ingredients } = recipe
@@ -12,9 +13,16 @@ const RecipeEdit: FC<recipeObjProp> = ({ recipe }) => {
     cookTime?: string
     servings?: number
     instructions?: string
+    ingredients?: IngredientProps[]
   }
   const handleChange = (changes: changeType) => {
     handleRecipeEdit({ ...recipe, ...changes })
+  }
+  const handleIngredientChange = (ingredient: IngredientProps) => {
+    const newIngredients = [...recipe.ingredients]
+    const index = newIngredients.findIndex(i => i.id === ingredient.id)
+    newIngredients[index] = ingredient
+    handleChange({ ingredients: newIngredients })
   }
   return (
     <div className="recipe-edit">
@@ -83,7 +91,11 @@ const RecipeEdit: FC<recipeObjProp> = ({ recipe }) => {
         <div></div>
         {ingredients.map(ingredient => {
           return (
-            <RecipeIngredientEdit key={ingredient.id} ingredient={ingredient} />
+            <RecipeIngredientEdit
+              key={ingredient.id}
+              ingredient={ingredient}
+              handleIngredientChange={handleIngredientChange}
+            />
           )
         })}
       </div>

@@ -6,6 +6,7 @@ export interface IngredientProps {
 
 export interface IngredientObjProps {
   ingredient: IngredientProps
+  handleIngredientChange(ingredient: IngredientProps): void
 }
 
 export interface IngredientListProps {
