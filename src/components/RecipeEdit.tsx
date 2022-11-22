@@ -3,6 +3,7 @@ import RecipeIngredientEdit from './RecipeIngredientEdit'
 import { RecipeContextValue, RecipeContext } from './App'
 import { recipeObjProp } from './interfaces'
 import { IngredientProps } from './interfaces'
+import { v4 as uuidv4 } from 'uuid'
 
 const RecipeEdit: FC<recipeObjProp> = ({ recipe }) => {
   const { id, name, cookTime, servings, instructions, ingredients } = recipe
@@ -28,6 +29,16 @@ const RecipeEdit: FC<recipeObjProp> = ({ recipe }) => {
     const ingredients = [...recipe.ingredients]
     const newIngredients = ingredients.filter(i => i.id !== id)
     handleChange({ ingredients: newIngredients })
+  }
+  const handleIngredientAdd = () => {
+    const ingredients = [...recipe.ingredients]
+    ingredients.push({
+      id: uuidv4(),
+      name: 'NAME',
+      amount: 'AMOUNT',
+    })
+    console.log('handleIngredientAdd')
+    handleChange({ ingredients: ingredients })
   }
   return (
     <div className="recipe-edit">
@@ -106,7 +117,12 @@ const RecipeEdit: FC<recipeObjProp> = ({ recipe }) => {
         })}
       </div>
       <div className="recipe-edit__add-ingredient-btn-container">
-        <button className="btn btn--primary">Add Ingredient</button>
+        <button
+          className="btn btn--primary"
+          onClick={() => handleIngredientAdd()}
+        >
+          Add Ingredient
+        </button>
       </div>
     </div>
   )
