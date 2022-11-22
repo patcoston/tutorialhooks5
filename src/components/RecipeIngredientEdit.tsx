@@ -4,6 +4,7 @@ import { IngredientObjProps } from './interfaces'
 const RecipeIngredientEdit: FC<IngredientObjProps> = ({
   ingredient,
   handleIngredientChange,
+  handleIngredientDel,
 }) => {
   const { id, name, amount } = ingredient
   return (
@@ -32,7 +33,12 @@ const RecipeIngredientEdit: FC<IngredientObjProps> = ({
           })
         }
       />
-      <button className="btn btn--danger">&times;</button>
+      <button
+        className="btn btn--danger"
+        onClick={() => handleIngredientDel(id)}
+      >
+        &times;
+      </button>
     </>
   )
 }

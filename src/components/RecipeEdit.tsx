@@ -24,6 +24,11 @@ const RecipeEdit: FC<recipeObjProp> = ({ recipe }) => {
     newIngredients[index] = ingredient
     handleChange({ ingredients: newIngredients })
   }
+  const handleIngredientDel = (id: string) => {
+    const ingredients = [...recipe.ingredients]
+    const newIngredients = ingredients.filter(i => i.id !== id)
+    handleChange({ ingredients: newIngredients })
+  }
   return (
     <div className="recipe-edit">
       <div className="recipe-edit__remove-button-container">
@@ -95,6 +100,7 @@ const RecipeEdit: FC<recipeObjProp> = ({ recipe }) => {
               key={ingredient.id}
               ingredient={ingredient}
               handleIngredientChange={handleIngredientChange}
+              handleIngredientDel={handleIngredientDel}
             />
           )
         })}
